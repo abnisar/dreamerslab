@@ -76,7 +76,7 @@ $result = $conn->query($sql);
                             <p class="text-muted">Created at: <?= htmlspecialchars($course['created_at']) ?></p>
                             <div class="mt-auto">
                                 <?php if (isset($_SESSION['user_id'])): ?>
-                                    <a href="enroll.php?course_id=<?= $course['id'] ?>" class="btn btn-success w-100">Enroll Now</a>
+                                    <a href="includes/enroll.php?course_id=<?= $course['id'] ?>" class="btn btn-success w-100">Enroll Now</a>
                                 <?php else: ?>
                                     <button type="button" class="btn btn-success w-100" onclick="alert('Please login first to enroll in a course.')">Enroll Now</button>
                                 <?php endif; ?>

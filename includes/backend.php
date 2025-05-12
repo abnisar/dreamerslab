@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         // Redirect back to admin panel
-        header("Location: admin.php?tab=" . ($_SESSION['active_tab'] ?? 'addcourse'));
+        header("Location: ../admin.php?tab=" . ($_SESSION['active_tab'] ?? 'addcourse'));
         exit();
     }
 }

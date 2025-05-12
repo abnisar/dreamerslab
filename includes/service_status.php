@@ -31,6 +31,6 @@ if (isset($_GET['id'], $_GET['action'], $_GET['user_id'])) {
 }
 
 // Redirect back to the admin panel
-header("Location: admin.php?tab=services");
+header("Location: ../admin.php?tab=services");
 exit();
 ?>

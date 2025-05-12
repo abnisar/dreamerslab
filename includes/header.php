@@ -94,7 +94,7 @@ if (isset($_SESSION['user_id'])) {
                                                 <?= htmlspecialchars($note['message']) ?>
                                             </div>
                                             <div class="mt-1 notification-actions">
-                                                <form method="post" action="delete_notification.php" class="d-inline">
+                                                <form method="post" action="includes/delete_notification.php" class="d-inline">
                                                     <input type="hidden" name="notification_id" value="<?= $note['id'] ?>">
                                                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                                                 </form>
@@ -114,7 +114,7 @@ if (isset($_SESSION['user_id'])) {
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="update_profile.php">Profile Edit</a></li>
-                                <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                                <li><a class="dropdown-item" href="includes/logout.php">Logout</a></li>
                             </ul>
                         </li>
                     <?php else: ?>

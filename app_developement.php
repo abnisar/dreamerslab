@@ -5,55 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 include "includes/header.php";
 $isLoggedIn = isset($_SESSION['user_id']); 
 ?>
-<!-- <style>
-  body {
-    font-family: 'Poppins', sans-serif;
-    background: #f8f9fa;
-    padding: 30px;
-  }
-
-  .section-title {
-    padding-top: 40px;
-    text-align: center;
-    margin-bottom: 40px;
-  }
-
-  .tech-logos img {
-    width: 60px;
-    margin: 10px;
-    transition: transform 0.3s;
-  }
-
-  .tech-logos img:hover {
-    transform: scale(1.2);
-  }
-
-  .performance-box {
-    background: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .hire-btn {
-    background-color: #0d6efd;
-    color: white;
-    font-weight: bold;
-    padding: 15px 30px;
-    border: none;
-    border-radius: 50px;
-    transition: 0.3s;
-  }
-
-  .hire-btn:hover {
-    background-color: #084298;
-  }
-
-  .spacer {
-    margin-bottom: 100px;
-  }
-</style> -->
-
 <div class="container">
 
   <!-- Title -->

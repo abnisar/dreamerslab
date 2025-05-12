@@ -6,6 +6,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
   $email    = mysqli_real_escape_string($conn, $_POST['email']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);
 
+  // ✅ Check if it's admin login
+  if ($email === "admin@gmail.com" && $password === "admin12345") {
+    $_SESSION['user_email'] = $email;
+    $_SESSION['user_name']  = "Admin";
+    $_SESSION['user_id']    = 0; // you can use a fixed value for admin
+    header("Location: admin.php");
+    exit();
+  }
+
+  // 🔐 Check in database for regular users
   $sql = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
   $result = $conn->query($sql);
 
@@ -13,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $row = $result->fetch_assoc();
    
     if (password_verify($password, $row['password'])) {
-      // ✅ Login successful
+      // ✅ Regular user login successful
       $_SESSION['user_id'] = $row['id'];
       $_SESSION['user_name']  = $row['name'];
       $_SESSION['user_email'] = $row['email'];
@@ -27,10 +37,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     $error = "❌ Email not found!";
   }
 }
-// elseif ($email = 'admin@gmail.com' && $password='admin123'){
-//       header("Location: admin.php");
-//       exit();
-//     }
 ?>
 
 <?php include 'includes/header.php'; ?>

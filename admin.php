@@ -1,5 +1,5 @@
 <?php
-include 'backend.php';
+include 'includes/backend.php';
 // include 'includes/header.php'; 
 ?>
 <!DOCTYPE html>
@@ -57,8 +57,8 @@ include 'backend.php';
                         </div>
                         <div>
                             <?php if ($row['status'] === 'Requested'): ?>
-                                <a href="enrollment_status.php?id=<?= $row['id'] ?>&action=Approved&user_id=<?= $row['user_id'] ?>" class="btn btn-success me-2">Accept</a>
-                                <a href="enrollment_status.php?id=<?= $row['id'] ?>&action=Decline&user_id=<?= $row['user_id'] ?>" class="btn btn-danger">Decline</a>
+                                <a href="includes/enrollment_status.php?id=<?= $row['id'] ?>&action=Approved&user_id=<?= $row['user_id'] ?>" class="btn btn-success me-2">Accept</a>
+                                <a href="includes/enrollment_status.php?id=<?= $row['id'] ?>&action=Decline&user_id=<?= $row['user_id'] ?>" class="btn btn-danger">Decline</a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -113,8 +113,8 @@ include 'backend.php';
                         </div>
                         <div>
                             <?php if ($row['status'] === 'Requested'): ?>
-                                <a href="service_status.php?id=<?= $row['id'] ?>&action=Approved&user_id=<?= $row['user_id'] ?>" class="btn btn-success me-2">Approve</a>
-                                <a href="service_status.php?id=<?= $row['id'] ?>&action=Decline&user_id=<?= $row['user_id'] ?>" class="btn btn-danger">Decline</a>
+                                <a href="includes/service_status.php?id=<?= $row['id'] ?>&action=Approved&user_id=<?= $row['user_id'] ?>" class="btn btn-success me-2">Approve</a>
+                                <a href="includes/service_status.php?id=<?= $row['id'] ?>&action=Decline&user_id=<?= $row['user_id'] ?>" class="btn btn-danger">Decline</a>
                             <?php endif; ?>
                         </div>
                     </div>

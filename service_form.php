@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['email
     // Check if the required fields are not empty
     if (!empty($name) && !empty($email) && !empty($phone) && !empty($project_type) && !empty($project_details) && !empty($budget) && !empty($timeline)) {
         // SQL insert
-        $sql = "INSERT INTO service (name, email, phone, project_type, project_details, budget, timeline, user_id, created_at)
+        $sql = "INSERT INTO service (name, email, phone, project_type, project_details, budget, timeline, user_id, created_at, status)
                 VALUES ('$name', '$email', '$phone', '$project_type', '$project_details', '$budget', '$timeline', $user_id, '$created_at', '$status')";
 
         if ($conn->query($sql) === TRUE) {

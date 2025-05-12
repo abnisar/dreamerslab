@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include "includes/connection.php";
+include "connection.php";
 
 $user_id = $_SESSION["user_id"] ?? null;
 $course_id = $_GET['course_id'] ?? null;
@@ -41,5 +41,5 @@ if ($user_id && $course_id) {
     $_SESSION['message_type'] = "warning";
 }
 
-header('Location: course.php');
+header('Location: ../course.php');
 exit;

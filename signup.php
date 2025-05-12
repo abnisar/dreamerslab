@@ -1,21 +1,27 @@
 <?php
 include 'includes/connection.php';
 
+$message = ''; // default message
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name     = mysqli_real_escape_string($conn, $_POST['name']);
     $email    = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
 
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    $sql = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
-
-   if ($conn->query($sql) === TRUE) {
-        $message = "Record inserted successfully!";
-        echo $message;
+    // Check if passwords match
+    if ($password !== $confirm_password) {
+        $message = '<div class="alert alert-danger">Passwords do not match.</div>';
     } else {
-        $message = "Error: " . $conn->error;
-        echo $message;
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
+
+        if ($conn->query($sql) === TRUE) {
+            $message = '<div class="alert alert-success">Account created successfully!</div>';
+        } else {
+            $message = '<div class="alert alert-danger">Error: ' . $conn->error . '</div>';
+        }
     }
 
     $conn->close();
@@ -24,9 +30,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <?php include 'includes/header.php'; ?>
 <body class="form-page">
-
   <div class="form-container">
     <h2 class="text-center mb-4">Create Your TechHub Account</h2>
+
+    <!-- Display message here -->
+    <?php if (!empty($message)) echo $message; ?>
+
     <form action="signup.php" method="POST">
       <div class="mb-3">
         <label for="name" class="form-label">Full Name</label>

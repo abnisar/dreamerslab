@@ -36,6 +36,6 @@ if (isset($_GET['id']) && isset($_GET['action']) && isset($_GET['user_id'])) {
 }
 
 // Redirect back to the admin panel
-header("Location: admin.php?tab=enrollments");
+header("Location: ../admin.php?tab=enrollments");
 exit();
 ?>
