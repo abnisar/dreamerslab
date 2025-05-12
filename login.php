@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
 
   if ($result && $result->num_rows === 1) {
     $row = $result->fetch_assoc();
-
+   
     if (password_verify($password, $row['password'])) {
       // ✅ Login successful
       $_SESSION['user_id'] = $row['id'];
@@ -19,13 +19,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
       $_SESSION['user_email'] = $row['email'];
       header("Location: index.php");
       exit();
-    } else {
+    } 
+    else {
       $error = "❌ Incorrect password!";
     }
   } else {
     $error = "❌ Email not found!";
   }
 }
+// elseif ($email = 'admin@gmail.com' && $password='admin123'){
+//       header("Location: admin.php");
+//       exit();
+//     }
 ?>
 
 <?php include 'includes/header.php'; ?>

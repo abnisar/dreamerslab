@@ -9,30 +9,8 @@ include 'backend.php';
     <meta charset="UTF-8">
     <title>Admin Panel - Dreamers Lab</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .card {
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .nav-tabs .nav-link.active {
-            background-color: #343a40;
-            color: white;
-            border-color: #343a40;
-        }
-
-        .admin-header {
-            background-color: #343a40;
-            color: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 2rem;
-        }
-
-        .tab-content {
-            padding: 20px 0;
-        }
-    </style>
-</head>
+    <link rel="stylesheet" href="style/admin_style.css">
+   </head>
 
 <body class="bg-light"></body>
 <div class="container mt-5">
@@ -119,41 +97,47 @@ include 'backend.php';
         </div>
 
         <!-- Service Requests Tab -->
+        <!-- Service Requests Tab -->
         <div class="tab-pane fade <?= $active_tab === 'services' ? 'show active' : '' ?>" id="services">
             <?php while ($row = $services->fetch_assoc()): ?>
                 <div class="card mb-3">
                     <div class="card-body d-flex justify-content-between align-items-center">
                         <div>
-                            <h5><?= htmlspecialchars($row['name']) ?> requested service: <?= htmlspecialchars($row['service_type']) ?></h5>
-                            <p><?= htmlspecialchars($row['details']) ?></p>
+                            <h5><?= htmlspecialchars($row['name']) ?> requested service: <?= htmlspecialchars($row['project_type']) ?></h5>
+                            <p>
+                                <strong>Status:</strong>
+                                <span class="status-badge status-<?= strtolower($row['status']) ?>">
+                                    <?= ucfirst($row['status']) ?>
+                                </span>
+                            </p>
                         </div>
                         <div>
-                            <a href="approve_service.php?id=<?= $row['id'] ?>" class="btn btn-success me-2">Approve</a>
-                            <a href="decline_service.php?id=<?= $row['id'] ?>" class="btn btn-danger">Decline</a>
+                            <?php if ($row['status'] === 'Requested'): ?>
+                                <a href="service_status.php?id=<?= $row['id'] ?>&action=Approved&user_id=<?= $row['user_id'] ?>" class="btn btn-success me-2">Approve</a>
+                                <a href="service_status.php?id=<?= $row['id'] ?>&action=Decline&user_id=<?= $row['user_id'] ?>" class="btn btn-danger">Decline</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             <?php endwhile; ?>
         </div>
 
-
     </div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    // Activate the correct tab on page load
-    document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const activeTab = urlParams.get('tab') || 'enrollments';
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Activate the correct tab on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const activeTab = urlParams.get('tab') || 'enrollments';
 
-        // Show the active tab
-        const tabPane = document.getElementById(activeTab);
-        if (tabPane) {
-            tabPane.classList.add('show', 'active');
-        }
-    });
-</script>
-</body>
+            // Show the active tab
+            const tabPane = document.getElementById(activeTab);
+            if (tabPane) {
+                tabPane.classList.add('show', 'active');
+            }
+        });
+    </script>
+    </body>
 
 </html>

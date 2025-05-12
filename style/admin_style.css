@@ -1,0 +1,21 @@
+  .card {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: #343a40;
+            color: white;
+            border-color: #343a40;
+        }
+
+        .admin-header {
+            background-color: #343a40;
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .tab-content {
+            padding: 20px 0;
+        }

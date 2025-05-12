@@ -12,7 +12,7 @@
       <!-- Company Overview -->
       <div class="row align-items-center mb-5">
         <div class="col-lg-6">
-          <img src="assets/slider1.jpg" class="img-fluid rounded shadow" alt="Company Image">
+          <img src="assets/imgpro.png" class="img-fluid rounded shadow" alt="Company Image">
         </div>
         <div class="col-lg-6">
           <h4 class="text-teal mb-3">Who We Are</h4>
@@ -31,18 +31,18 @@
       </div>
       <div class="row g-4 justify-content-center">
         <div class="col-md-4 text-center">
-          <img src="assets/slider1.jpg" class="rounded-circle shadow mb-3" alt="CEO">
+          <img src="assets/image.png" class="rounded-circle shadow mb-3" alt="CEO">
           <h5 class="fw-bold">Zain Ul Hassan</h5>
           <p class="text-muted">Founder & CEO</p>
         </div>
         <div class="col-md-4 text-center">
-          <img src="assets/slider1.jpg" class="rounded-circle shadow mb-3" alt="Manager">
-          <h5 class="fw-bold">Subhan Ali</h5>
+          <img src="assets\IMG-20240429-WA0042(1).jpg" class="rounded-circle shadow mb-3" alt="Manager">
+          <h5 class="fw-bold">Abu Bakar Nisar</h5>
           <p class="text-muted">Operations Manager</p>
         </div>
         <div class="col-md-4 text-center">
-          <img src="assets/slider1.jpg" class="rounded-circle shadow mb-3" alt="CTO">
-          <h5 class="fw-bold">Ayesha Khan</h5>
+          <img src="assets/image1.png" class="rounded-circle shadow mb-3" alt="CTO">
+          <h5 class="fw-bold">Ahmed Aslam</h5>
           <p class="text-muted">CTO</p>
         </div>
       </div>

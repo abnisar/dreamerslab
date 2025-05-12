@@ -67,10 +67,12 @@ $enrollments = $conn->query("SELECT e.id, u.id as user_id, u.name, c.title as co
                            JOIN course c ON e.course_id = c.id 
                            ORDER BY e.status, e.id DESC");
 
-// $services = $conn->query("SELECT s.id, u.name, s.service_type, s.details 
-//                          FROM service_requests s 
-//                          JOIN user u ON s.user_id = u.id 
-//                          WHERE s.status = 'pending'");
+// Fetch Service Requests (uncommented)
+$services = $conn->query("SELECT s.id, u.id as user_id, u.name, s.project_type, s.project_details, s.status 
+                          FROM service s 
+                          JOIN user u ON s.user_id = u.id 
+                          ORDER BY s.status, s.id DESC");
+
 
 // Set active tab from session if available
 if (isset($_SESSION['active_tab'])) {

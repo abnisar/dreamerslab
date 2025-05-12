@@ -7,7 +7,7 @@
 
     <!-- Slide 1 -->
     <div class="carousel-item active">
-      <img src="assets/1.jpg" class="d-block w-100 carousel-img" alt="Slider 1">
+      <img src="assets\Gemini_Generated_Image_dv1hdidv1hdidv1h.jpeg" class="d-block w-100 carousel-img" alt="Slider 1">
       <div class="carousel-overlay"></div>
       <div class="carousel-caption text-center">
         <h1 class="fw-bold text-white">Welcome to Dreamers Lab</h1>
@@ -18,7 +18,7 @@
 
     <!-- Slide 2 -->
     <div class="carousel-item">
-      <img src="assets/3_Software.jpg" class="d-block w-100 carousel-img" alt="Slider 2">
+      <img src="assets\Gemini_Generated_Image_nlod6bnlod6bnlod.jpeg" class="d-block w-100 carousel-img" alt="Slider 2">
       <div class="carousel-overlay"></div>
       <div class="carousel-caption text-center">
         <h1 class="fw-bold text-white">Your Trusted IT Partner</h1>

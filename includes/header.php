@@ -61,7 +61,16 @@ if (isset($_SESSION['user_id'])) {
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="course.php">Courses</a></li>
-                    <li class="nav-item"><a class="nav-link" href="services.php">Services</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Services
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="servicesDropdown">
+                            <li><a class="dropdown-item" href="app_developement.php">Mobile App Development</a></li>
+                            <li><a class="dropdown-item" href="web_developement.php">Web Development</a></li>
+                            <li><a class="dropdown-item" href="desktop_dev.php">Desktop Development</a></li>
+                        </ul>
+                    </li>
                     <li class="nav-item"><a class="nav-link" href="aboutus.php">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
 
