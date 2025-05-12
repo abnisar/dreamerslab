@@ -12,7 +12,7 @@
       <!-- Company Overview -->
       <div class="row align-items-center mb-5">
         <div class="col-lg-6">
-          <img src="assets/imgpro.png" class="img-fluid rounded shadow" alt="Company Image">
+          <img src="assets/banner.png" class="img-fluid rounded shadow" alt="Company Image">
         </div>
         <div class="col-lg-6">
           <h4 class="text-teal mb-3">Who We Are</h4>
