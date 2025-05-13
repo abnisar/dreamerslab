@@ -8,13 +8,13 @@ $showMessage = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['email'], $_POST['phone'], $_POST['project_type'], $_POST['project_details'], $_POST['budget'], $_POST['timeline'])) {
     // Sanitize inputs
-    $name = trim($conn->real_escape_string($_POST['name']));
-    $email = trim($conn->real_escape_string($_POST['email']));
-    $phone = trim($conn->real_escape_string($_POST['phone']));
-    $project_type = $conn->real_escape_string($_POST['project_type']);
-    $project_details = trim($conn->real_escape_string($_POST['project_details']));
-    $budget = trim($conn->real_escape_string($_POST['budget']));
-    $timeline = trim($conn->real_escape_string($_POST['timeline']));
+    $name = trim($_POST['name']);
+    $email = trim($_POST['email']);
+    $phone = trim( $_POST['phone']);
+    $project_type = $_POST['project_type'];
+    $project_details = trim($_POST['project_details']);
+    $budget = trim($_POST['budget']);
+    $timeline = trim($_POST['timeline']);
     $created_at = date('Y-m-d H:i:s');
     $user_id = intval($_SESSION['user_id']);
     $status = 'requested';
@@ -23,18 +23,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['email
     if (!empty($name) && !empty($email) && !empty($phone) && !empty($project_type) && !empty($project_details) && !empty($budget) && !empty($timeline)) {
         // SQL insert
         $sql = "INSERT INTO service (name, email, phone, project_type, project_details, budget, timeline, user_id, created_at, status)
-                VALUES ('$name', '$email', '$phone', '$project_type', '$project_details', '$budget', '$timeline', $user_id, '$created_at', '$status')";
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        if ($conn->query($sql) === TRUE) {
-            $_SESSION['message'] = "Form submitted successfully! We will get back to you soon.";
+        $result = $conn->prepare($sql);
+        $result->bind_param("ssssssssis", $name, $email, $phone, $project_type, $project_details, $budget, $timeline, $user_id, $created_at,$status);
+        if($result->execute()){
+           $_SESSION['message'] = "Form submitted successfully! We will get back to you soon.";
         } else {
             $_SESSION['message'] = "Error submitting form: " . $conn->error;
         }
-    } else {
+        } else {
         $_SESSION['message'] = "Please fill in all the required fields.";
     }
-
-    // Redirect to avoid form resubmission on refresh
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }

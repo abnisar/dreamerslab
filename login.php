@@ -2,45 +2,54 @@
 session_start();
 include 'includes/connection.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-  $email    = mysqli_real_escape_string($conn, $_POST['email']);
-  $password = mysqli_real_escape_string($conn, $_POST['password']);
+$error = ""; // Initialize the error message
 
-  // ✅ Check if it's admin login
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+  $email    = trim($_POST['email']);
+  $password = $_POST['password'];
+
+  // Admin login shortcut
   if ($email === "admin@gmail.com" && $password === "admin12345") {
     $_SESSION['user_email'] = $email;
     $_SESSION['user_name']  = "Admin";
-    $_SESSION['user_id']    = 0; // you can use a fixed value for admin
+    $_SESSION['user_id']    = 0;
     header("Location: admin.php");
     exit();
   }
 
-  // 🔐 Check in database for regular users
-  $sql = "SELECT * FROM user WHERE email = '$email' LIMIT 1";
-  $result = $conn->query($sql);
+  // User login
+  $sql = "SELECT * FROM user WHERE email = ? LIMIT 1";
+  $stmt = $conn->prepare($sql);
 
-  if ($result && $result->num_rows === 1) {
-    $row = $result->fetch_assoc();
-   
-    if (password_verify($password, $row['password'])) {
-      // ✅ Regular user login successful
-      $_SESSION['user_id'] = $row['id'];
-      $_SESSION['user_name']  = $row['name'];
-      $_SESSION['user_email'] = $row['email'];
-      header("Location: index.php");
-      exit();
-    } 
-    else {
-      $error = "❌ Incorrect password!";
+  if ($stmt) {
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result && $result->num_rows === 1) {
+      $row = $result->fetch_assoc();
+
+      if (password_verify($password, $row['password'])) {
+        $_SESSION['user_id']    = $row['id'];
+        $_SESSION['user_name']  = $row['name'];
+        $_SESSION['user_email'] = $row['email'];
+        header("Location: index.php");
+        exit();
+      } else {
+        $error = "Incorrect password!";
+      }
+    } else {
+      $error = "Email not found!";
     }
+    $stmt->close();
   } else {
-    $error = "❌ Email not found!";
+    $error = "Error preparing the query.";
   }
 }
 ?>
 
 <?php include 'includes/header.php'; ?>
-<?php if (isset($error)) : ?>
+<?php if (!empty($error)) : ?>
   <div class="alert alert-danger text-center"><?= $error ?></div>
 <?php endif; ?>
 

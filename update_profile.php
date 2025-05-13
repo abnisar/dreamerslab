@@ -80,7 +80,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $error = "Current password is incorrect.";
                     }
                 } else {
-                    $hashed_password = $user['password']; // keep old
+                    $hashed_password = $user['password']; 
                 }
 
                 if (empty($error)) {

@@ -23,18 +23,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $img_error = $course_img['error'];
 
         if ($img_error === 0) {
-            // Get file extension
+            
             $img_ext = strtolower(pathinfo($img_name, PATHINFO_EXTENSION));
 
-            // Generate unique image name
             $img_new_name = uniqid('', true) . '.' . $img_ext;
 
-            // Use absolute path for more reliability
             $img_upload_path = __DIR__ . '/uploads/course_images/' . $img_new_name;
 
-            // Move uploaded file
             if (move_uploaded_file($img_tmp, $img_upload_path)) {
-                // Prepare and execute insert query
                 $stmt = $conn->prepare("INSERT INTO course (title, description, duration, teacher, course_img) VALUES (?, ?, ?, ?, ?)");
                 $stmt->bind_param("sssss", $title, $description, $duration, $teacher, $img_new_name);
 

@@ -1,13 +1,13 @@
 <?php
 include 'includes/connection.php';
 
-$message = ''; // default message
+$message = ''; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $name     = mysqli_real_escape_string($conn, $_POST['name']);
-    $email    = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
-    $confirm_password = mysqli_real_escape_string($conn, $_POST['confirm_password']);
+    $name     = $_POST['name'];
+    $email    = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
     // Check if passwords match
     if ($password !== $confirm_password) {
@@ -15,9 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO user (name, email, password) VALUES ('$name', '$email', '$hashed_password')";
+        $sql = "INSERT INTO user (name, email, password) VALUES (?, ?, ?)";
 
-        if ($conn->query($sql) === TRUE) {
+        $stmt=$conn->prepare($sql);
+        $stmt->bind_param("sss", $name, $email, $hashed_password);
+        if($stmt->execute()) {
             $message = '<div class="alert alert-success">Account created successfully!</div>';
         } else {
             $message = '<div class="alert alert-danger">Error: ' . $conn->error . '</div>';
